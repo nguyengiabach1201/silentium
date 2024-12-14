@@ -1,0 +1,17 @@
+{
+    "name": "tiny-game-engine",
+    "version": "1.0.0",
+    "main": "test.js",
+    "scripts": {
+        "build": "webpack"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "wasmoon": "^1.16.0"
+      },
+    "devDependencies": {
+        "webpack-cli": "^5.1.4"
+    }
+}
