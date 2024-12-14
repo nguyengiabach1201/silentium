@@ -10,6 +10,9 @@ function init()
 end
 
 function update()
+    -- print(mget(200,128))
+    test = mget(0,0)
+    print(test.u)
     -- cls()
     -- if btn("a") then
     --     print("loop")

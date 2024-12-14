@@ -35,8 +35,6 @@ export function importFiles() {
             .then((json) => {
                 tilemaps[tilemapUrl] = json.layers[0];
                 filesLoadedCount += 1;
-
-                console.log(tilemaps[tilemapUrl]);
             });
     });
 

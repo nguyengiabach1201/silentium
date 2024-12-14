@@ -4,7 +4,7 @@ import { ctx, canvas } from "./canvas";
 
 export var images = [];
 export var tilemaps = [];
-export var drewTilemaps = [];
+export var drewTiles = [];
 
 function rgbToHex(r, g, b) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
@@ -31,6 +31,7 @@ function hexToRgb(hex) {
 }
 
 export function cls() {
+    drewTiles = [];
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -63,8 +64,6 @@ export function spr(img, x, y, u, v) {
 }
 
 export function map(tilemap, src, x, y, u, v, w, h) {
-    // drewTilemaps[layer];
-
     for (let i = u; i < w; i++) {
         for (let j = v; j < h; j++) {
             if (w <= tilemaps[tilemap].width && h <= tilemaps[tilemap].height) {
@@ -89,14 +88,30 @@ export function map(tilemap, src, x, y, u, v, w, h) {
                     _u,
                     _v
                 );
+
+                drewTiles.push({
+                    x: x + i * manifest.sprites.width,
+                    y: y + j * manifest.sprites.height,
+                    u: _u,
+                    v: _v,
+                });
             }
         }
     }
 }
 
-export function mget(x, y) {}
+export function mget(x, y) {
+    let tile = drewTiles.find(
+        (tile) =>
+            Math.abs(tile.x - x) < manifest.sprites.width &&
+            Math.abs(tile.y - y) < manifest.sprites.height
+    );
+    return tile != undefined ? { u: tile.u, v: tile.v } : { u: -1, v: -1 };
+}
 
-export function mset(src, x, y, u, v) {}
+export function mset(src, x, y, u, v) {
+    spr(src, x * manifest.sprites.width, y * manifest.sprites.height, u, v);
+}
 
 export function text(s, x, y) {
     ctx.fillText(s, x, y);

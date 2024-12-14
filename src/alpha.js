@@ -3,7 +3,6 @@
 import { setup, checkIsLoaded } from "./setup/boot";
 import { luaEngine } from "./modules/lua";
 import { inputHandler } from "./modules/input";
-import { drewTilemaps } from "./modules/graphics";
 
 const fps = 60;
 window.addEventListener("load", function () {
@@ -20,7 +19,6 @@ window.addEventListener("load", function () {
 
     const loop = function () {
         inputHandler();
-        drewTilemaps = [];
 
         let update =
             luaEngine.global.get("update") != null
