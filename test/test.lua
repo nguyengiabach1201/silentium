@@ -1,1 +1,0 @@
-print("Gia Bach is handsome")
